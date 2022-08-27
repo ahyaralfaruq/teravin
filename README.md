@@ -47,5 +47,5 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 ### Node and React version
 
-Node v16.13.0
-React v18.2.0
+- Node v16.13.0
+- React v18.2.0

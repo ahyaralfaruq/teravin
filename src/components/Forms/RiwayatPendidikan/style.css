@@ -1,0 +1,6 @@
+.form-wrapper {
+   padding: 30px;
+}
+.form-wrapper > .MuiTypography-h6 {
+   margin-bottom: 40px;
+}

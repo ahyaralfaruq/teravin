@@ -40,7 +40,7 @@ const AddEmployee = ({ addPesertaBaru }) => {
 
    console.log(postData);
 
-   const [activeStep, setActiveStep] = useState(0);
+   const [activeStep, setActiveStep] = useState(1);
    const steps = [
       "Data diri",
       "Riwayat pendidikan",

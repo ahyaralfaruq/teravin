@@ -112,10 +112,10 @@ const Detail = ({ getPesertaBaru }) => {
                   Keahlian
                </Typography>
                {datas.map((data) =>
-                  data.keahlian.map((k) => (
-                     <div style={{ marginBottom: "30px" }} key={k.id}>
+                  data.keahlian.map((k, i) => (
+                     <div style={{ marginBottom: "30px" }} key={i}>
                         <Typography variant="body1">
-                           Keahlian : {k.keahlian}
+                           Keahlian : {k.value}
                         </Typography>
                      </div>
                   ))

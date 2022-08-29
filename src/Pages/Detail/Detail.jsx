@@ -1,16 +1,19 @@
-import { Typography, Container, Paper, Divider } from "@mui/material";
+import { Typography, Container, Paper, Divider, Button } from "@mui/material";
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import "./style.css";
 
 const Detail = ({ getPesertaBaru }) => {
    const paramId = useParams();
-
+   const navigate = useNavigate();
    const datas = getPesertaBaru.filter(
       (pesertaBaru) => pesertaBaru.id === paramId.id
    );
 
-   console.log(datas);
+   const backToHome = () => {
+      navigate("/", { replace: true });
+   };
+
    return (
       <Container className="container">
          <Paper className="pre" key={datas.id}>
@@ -120,6 +123,11 @@ const Detail = ({ getPesertaBaru }) => {
                      </div>
                   ))
                )}
+            </div>
+            <div style={{ textAlign: "center" }}>
+               <Button variant="contained" size="small" onClick={backToHome}>
+                  Back to Home
+               </Button>
             </div>
          </Paper>
       </Container>

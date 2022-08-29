@@ -132,11 +132,11 @@ const RiwayatPendidikan = ({ nextPersonal, backStep }) => {
                </Grid>
             </Grid>
             <div style={{ textAlign: "right" }}>
-               <Button variant="outlined" onClick={backStep}>
-                  Back
+               <Button variant="outlined" onClick={backStep} size="small">
+                  Prev
                </Button>
 
-               <Button type="submit" variant="outlined">
+               <Button type="submit" variant="outlined" size="small">
                   Next
                </Button>
             </div>

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
-import { Home, AddEmployee } from "./Pages";
+import { Home, AddEmployee, Detail } from "./Pages";
 
 import "./App.css";
 
@@ -10,7 +10,7 @@ function App() {
    const [state, setState] = useState([]);
 
    const addPesertaBaru = (data) => {
-      setState([...state, data]);
+      setState([data, ...state]);
    };
 
    useEffect(() => {
@@ -28,6 +28,10 @@ function App() {
       <div className="App">
          <Routes>
             <Route path="/" element={<Home getPesertaBaru={state} />} />
+            <Route
+               path="/detail/:id"
+               element={<Detail getPesertaBaru={state} />}
+            />
             <Route
                path="/form"
                element={<AddEmployee addPesertaBaru={addPesertaBaru} />}

@@ -134,11 +134,11 @@ const DataDiri = ({ nextPersonal }) => {
                   />
                </Grid>
             </Grid>
-            <div style={{ textAlign: "center" }}>
-               <Button variant="outlined" onClick={backToHome}>
+            <div style={{ textAlign: "right" }}>
+               <Button variant="outlined" onClick={backToHome} size="small">
                   Back to Home
                </Button>
-               <Button type="submit" variant="outlined">
+               <Button type="submit" variant="outlined" size="small">
                   Next
                </Button>
             </div>

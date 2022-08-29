@@ -15,6 +15,7 @@ import {
    PengalamanKerja,
    Keahlian,
 } from "../../components";
+import { useNavigate } from "react-router-dom";
 
 import "./AddEmployee.css";
 import { v4 } from "uuid";
@@ -34,18 +35,17 @@ const AddEmployee = ({ addPesertaBaru }) => {
       race: "",
       riwayatPendidikan: [],
       pengalamanKerja: [],
-      keahlian: "",
+      keahlian: [],
    });
 
-   console.log(postData);
-
-   const [activeStep, setActiveStep] = useState(1);
+   const [activeStep, setActiveStep] = useState(0);
    const steps = [
       "Data diri",
       "Riwayat pendidikan",
       "Pengalaman Kerja",
       "Keahlian",
    ];
+   const navigate = useNavigate();
 
    const nextStep = () => setActiveStep((next) => next + 1);
    const backStep = () => setActiveStep((back) => back - 1);
@@ -72,9 +72,9 @@ const AddEmployee = ({ addPesertaBaru }) => {
 
    const onFinally = () => {
       addPesertaBaru(postData);
-   };
 
-   console.log(postData);
+      navigate("/", { replace: true });
+   };
 
    const Confirmation = () => (
       <>
@@ -85,22 +85,44 @@ const AddEmployee = ({ addPesertaBaru }) => {
          >
             Pendaftaran Selesai
          </Typography>
-         <Divider />
-         <Typography variant="subtittle2" style={{ marginBottom: "50px" }}>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate
-            inventore nostrum aperiam, in quos culpa nemo aspernatur quaerat
-            laborum delectus dolore id voluptatem libero iste rem ducimus!
-            Laboriosam, unde ut?
-         </Typography>
-         <Button
-            type="button"
-            onClick={onFinally}
-            variant="contained"
-            color="primary"
-            size="small"
-         >
-            Selesai dan Kembali
-         </Button>
+
+         <Divider style={{ marginBottom: "20px" }} />
+
+         {[postData].map((data, i) => (
+            <Typography
+               variant="subtitle2"
+               style={{ marginBottom: "50px", wordWrap: "break-word" }}
+               key={i}
+            >
+               {JSON.stringify(data)}
+            </Typography>
+         ))}
+
+         <div style={{ textAlign: "center" }}>
+            {postData.keahlian.length === 0 ||
+            postData.riwayatPendidikan.length < 1 ||
+            postData.pengalamanKerja.length === 0 ? (
+               <Button
+                  type="button"
+                  disabled
+                  variant="contained"
+                  color="primary"
+                  size="small"
+               >
+                  Selesai dan Kembali
+               </Button>
+            ) : (
+               <Button
+                  type="button"
+                  onClick={onFinally}
+                  variant="contained"
+                  color="primary"
+                  size="small"
+               >
+                  Selesai dan Kembali
+               </Button>
+            )}
+         </div>
       </>
    );
 

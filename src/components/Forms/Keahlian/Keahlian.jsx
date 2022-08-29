@@ -1,13 +1,20 @@
 import React from "react";
-import { Typography, Grid, Button } from "@mui/material";
-import { useForm, FormProvider } from "react-hook-form";
-
-import CustomInput from "../CustomInput";
+import { Typography, Grid, Button, TextField } from "@mui/material";
+import { useForm, useFieldArray } from "react-hook-form";
 
 import "./style.css";
 
-const Keahlian = ({ next }) => {
-   const { handleSubmit, register } = useForm();
+const namaFieldArray = "keahlian";
+
+const Keahlian = ({ nextPersonal, backStep }) => {
+   const { handleSubmit, register, control } = useForm();
+   const { fields, append } = useFieldArray({
+      control,
+      name: namaFieldArray,
+      defaultValues: {
+         [namaFieldArray]: [],
+      },
+   });
 
    return (
       <div className="form-wrapper">
@@ -15,22 +22,39 @@ const Keahlian = ({ next }) => {
             Data diri
          </Typography>
 
-         <form onSubmit={handleSubmit((data) => console.log(data))}>
+         <form onSubmit={handleSubmit((data) => nextPersonal({ ...data }))}>
             <Grid container spacing={3}>
-               <Grid item xs={12} sm={8}>
-                  <TextField
-                     {...register("keahlian")}
-                     fullWidth
+               {fields.map((field, i) => (
+                  <Grid item xs={12} sm={12} key={field.id}>
+                     <TextField
+                        {...register(`${namaFieldArray}.${i}.value`)}
+                        fullWidth
+                        variant="outlined"
+                        type="text"
+                        label="Keahlian"
+                        required
+                        size="small"
+                     />
+                  </Grid>
+               ))}
+
+               <Grid item xs={12} sm={12} align="center">
+                  <Button
+                     type="button"
                      variant="outlined"
-                     type="text"
-                     label="Nama"
-                     required
-                     size="small"
-                  />
+                     onClick={() =>
+                        append({ value: "" }, { focusName: "test.0.value" })
+                     }
+                  >
+                     Add Keahlian
+                  </Button>
                </Grid>
             </Grid>
-            <div style={{ textAlign: "center" }}>
-               <Button type="submit" variant="outlined">
+            <div style={{ textAlign: "right" }}>
+               <Button variant="outlined" onClick={backStep} size="small">
+                  Prev
+               </Button>
+               <Button type="submit" variant="outlined" size="small">
                   Next
                </Button>
             </div>

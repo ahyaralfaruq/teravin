@@ -1,0 +1,14 @@
+.MuiContainer-root.home-root {
+   padding-bottom: 40px;
+}
+.MuiContainer-root.home-root > .MuiPaper-root.paper-wrapper {
+   padding-bottom: 40px;
+}
+
+.paper-wrapper > .MuiTypography-h5,
+.paper-wrapper > .MuiStepper-root {
+   margin-bottom: 40px;
+}
+.MuiPaper-root.paper-wrapper > .MuiButtonBase-root {
+   margin-bottom: 20px;
+}

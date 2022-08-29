@@ -1,0 +1,14 @@
+.MuiContainer-root.container {
+   overflow: hidden;
+   /* background: #f5f7f9; */
+   padding-bottom: 40px;
+   margin-top: 40px;
+}
+.MuiContainer-root.container > .MuiPaper-root.pre {
+   word-wrap: break-word;
+   background: #e0e0e0;
+   padding-bottom: 40px;
+}
+.MuiContainer-root.container > .MuiPaper-root.pre > div {
+   padding: 30px;
+}

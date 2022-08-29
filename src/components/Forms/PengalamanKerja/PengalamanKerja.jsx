@@ -116,9 +116,9 @@ const PengalamanKerja = ({ nextPersonal, backStep }) => {
                         append({
                            namaPerusahaan: "",
                            jenisIndustri: "",
-                           jabatanAwal: "",
-                           jabatanAkhir: "",
-                           NamaAtasan: "",
+                           dari: "",
+                           sampai: "",
+                           alasan: "",
                         });
                      }}
                   >
@@ -132,11 +132,11 @@ const PengalamanKerja = ({ nextPersonal, backStep }) => {
                </Grid>
             </Grid>
             <div style={{ textAlign: "rigth" }}>
-               <Button variant="outlined" onClick={backStep}>
+               <Button variant="outlined" onClick={backStep} size="small">
                   Back
                </Button>
 
-               <Button type="submit" variant="outlined">
+               <Button type="submit" variant="outlined" size="small">
                   Next
                </Button>
             </div>

@@ -22,20 +22,6 @@ const Tabel = ({ getPesertaBaru }) => {
             </TableRow>
          </TableHead>
          <TableBody>
-            <TableRow>
-               <TableCell>1</TableCell>
-               <TableCell>Default Data</TableCell>
-               <TableCell>Jl. Teravin</TableCell>
-               <TableCell>
-                  <Button
-                     component={Link}
-                     to={`/detail/1`}
-                     style={{ color: "#dbdbdb" }}
-                  >
-                     <RemoveRedEye />
-                  </Button>
-               </TableCell>
-            </TableRow>
             {getPesertaBaru.map((data, index) => (
                <TableRow key={data.id}>
                   <TableCell>{data.id}</TableCell>

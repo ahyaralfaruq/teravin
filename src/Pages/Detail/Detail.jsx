@@ -4,158 +4,124 @@ import { useParams } from "react-router-dom";
 import "./style.css";
 
 const Detail = ({ getPesertaBaru }) => {
-   const initialData = {
-      id: 1,
-      nama: "Default Data",
-      alamat: "jl. Teravin",
-      placeOfBirth: "Jakarta",
-      dateOfBirth: "20 Januari 1973",
-      email: "defaultEmail@email.com",
-      nohp: "083899966613",
-      norek: "0000000000",
-      gender: "laki-laki",
-      agama: "Islam",
-      race: "Indonesia",
-      pengalamanKerja: [
-         {
-            namaPerusahaan: "Perusahaan",
-            jenisIndustri: "Jasa",
-            dari: "2018",
-            sampai: "2020",
-            alasan: "tidak ada",
-         },
-         {
-            namaPerusahaan: "Perusahaan 2",
-            jenisIndustri: "Jasa",
-            dari: "2020",
-            sampai: "2021",
-            alasan: "tidak ada",
-         },
-      ],
-      riwayatPendidikan: [
-         {
-            namaPerusahaan: "Sekolah",
-            jurusan: "Jasa",
-            dari: "2015",
-            sampai: "2018",
-            keterangan: "tidak ada",
-         },
-      ],
-      keahlian: [
-         {
-            value: "Coding",
-         },
-      ],
-   };
    const paramId = useParams();
 
+   const datas = getPesertaBaru.filter(
+      (pesertaBaru) => pesertaBaru.id === paramId.id
+   );
+
+   console.log(datas);
    return (
       <Container className="container">
-         {getPesertaBaru
-            .filter((pesertaBaru) => pesertaBaru.id === paramId.id)
-            .map((data) => (
-               <Paper className="pre">
-                  <Typography variant="h5" align="center" gutterBottom>
-                     {initialData.id}
-                  </Typography>
-                  <Divider />
-                  <div>
-                     <Typography variant="h6" align="center" gutterBottom>
-                        Data diri
+         <Paper className="pre" key={datas.id}>
+            <Typography variant="h5" align="center" gutterBottom>
+               {datas.id}
+            </Typography>
+            <Divider />
+            <div>
+               <Typography variant="h6" align="center" gutterBottom>
+                  Data diri
+               </Typography>
+               {datas.map((data) => (
+                  <div style={{ marginBottom: "30px" }} key={data.id}>
+                     <Typography variant="body1">Nama : {data.nama}</Typography>
+                     <Typography variant="body1">
+                        Alamat : {data.alamat}
                      </Typography>
                      <Typography variant="body1">
-                        Nama : {initialData.nama}
+                        Tempat Lahir : {data.placeOfBirth}
                      </Typography>
                      <Typography variant="body1">
-                        Alamat : {initialData.alamat}
+                        Tanggal Lahir : {data.dateOfBirth}
                      </Typography>
                      <Typography variant="body1">
-                        Tempat Lahir : {initialData.placeOfBirth}
+                        Email : {data.email}
                      </Typography>
                      <Typography variant="body1">
-                        Tanggal Lahir : {initialData.dateOfBirth}
+                        No. Hp : {data.nohp}
                      </Typography>
                      <Typography variant="body1">
-                        Email : {initialData.email}
+                        No. Rek : {data.norek}
                      </Typography>
                      <Typography variant="body1">
-                        No. Hp : {initialData.nohp}
+                        Gender : {data.gender}
                      </Typography>
                      <Typography variant="body1">
-                        No. Rek : {initialData.norek}
+                        Agama : {data.agama}
                      </Typography>
                      <Typography variant="body1">
-                        Gender : {initialData.gender}
-                     </Typography>
-                     <Typography variant="body1">
-                        Agama : {initialData.agama}
-                     </Typography>
-                     <Typography variant="body1">
-                        Kewarganegaraan : {initialData.race}
+                        Kewarganegaraan : {data.race}
                      </Typography>
                   </div>
-                  <div>
-                     <Typography variant="h6" align="center" gutterBottom>
-                        Riwayat Pendidikan
-                     </Typography>
-                     {initialData.riwayatPendidikan.map((rp) => (
-                        <div style={{ marginBottom: "30px" }}>
-                           <Typography variant="body1">
-                              Nama sekolah: {rp.namaSekolah}
-                           </Typography>
-                           <Typography variant="body1">
-                              Jurusan : {rp.jurusan}
-                           </Typography>
-                           <Typography variant="body1">
-                              Dari : {rp.dari}
-                           </Typography>
-                           <Typography variant="body1">
-                              Sampai : {rp.sampai}
-                           </Typography>
-                           <Typography variant="body1">
-                              Keterangan : {rp.keterangan}
-                           </Typography>
-                        </div>
-                     ))}
-                  </div>
-                  <div>
-                     <Typography variant="h6" align="center" gutterBottom>
-                        Pengalaman Kerja
-                     </Typography>
-                     {initialData.pengalamanKerja.map((pk) => (
-                        <div style={{ marginBottom: "30px" }}>
-                           <Typography variant="body1">
-                              Nama perusahaan : {pk.namaPerusahaan}
-                           </Typography>
-                           <Typography variant="body1">
-                              Jenis industri : {pk.jenisIndustri}
-                           </Typography>
-                           <Typography variant="body1">
-                              Dari : {pk.dari}
-                           </Typography>
-                           <Typography variant="body1">
-                              Sampai : {pk.sampai}
-                           </Typography>
-                           <Typography variant="body1">
-                              Alasan keluar : {pk.alasan}
-                           </Typography>
-                        </div>
-                     ))}
-                  </div>
-                  <div>
-                     <Typography variant="h6" align="center" gutterBottom>
-                        Keahlian
-                     </Typography>
-                     {initialData.pengalamanKerja.map((k) => (
-                        <div style={{ marginBottom: "30px" }}>
-                           <Typography variant="body1">
-                              Keahlian : {k.namaPerusahaan}
-                           </Typography>
-                        </div>
-                     ))}
-                  </div>
-               </Paper>
-            ))}
+               ))}
+            </div>
+            <div>
+               <Typography variant="h6" align="center" gutterBottom>
+                  Riwayat Pendidikan
+               </Typography>
+               {datas.map((data) =>
+                  data.riwayatPendidikan.map((rp) => (
+                     <div style={{ marginBottom: "30px" }} key={rp.id}>
+                        <Typography variant="body1">
+                           Nama sekolah: {rp.namaSekolah}
+                        </Typography>
+                        <Typography variant="body1">
+                           Jurusan : {rp.jurusan}
+                        </Typography>
+                        <Typography variant="body1">
+                           Dari : {rp.dari}
+                        </Typography>
+                        <Typography variant="body1">
+                           Sampai : {rp.sampai}
+                        </Typography>
+                        <Typography variant="body1">
+                           Keterangan : {rp.keterangan}
+                        </Typography>
+                     </div>
+                  ))
+               )}
+            </div>
+            <div>
+               <Typography variant="h6" align="center" gutterBottom>
+                  Pengalaman Kerja
+               </Typography>
+               {datas.map((data) =>
+                  data.pengalamanKerja.map((pk) => (
+                     <div style={{ marginBottom: "30px" }} key={pk.id}>
+                        <Typography variant="body1">
+                           Nama perusahaan : {pk.namaPerusahaan}
+                        </Typography>
+                        <Typography variant="body1">
+                           Jenis industri : {pk.jenisIndustri}
+                        </Typography>
+                        <Typography variant="body1">
+                           Dari : {pk.dari}
+                        </Typography>
+                        <Typography variant="body1">
+                           Sampai : {pk.sampai}
+                        </Typography>
+                        <Typography variant="body1">
+                           Alasan keluar : {pk.alasan}
+                        </Typography>
+                     </div>
+                  ))
+               )}
+            </div>
+            <div>
+               <Typography variant="h6" align="center" gutterBottom>
+                  Keahlian
+               </Typography>
+               {datas.map((data) =>
+                  data.keahlian.map((k) => (
+                     <div style={{ marginBottom: "30px" }} key={k.id}>
+                        <Typography variant="body1">
+                           Keahlian : {k.keahlian}
+                        </Typography>
+                     </div>
+                  ))
+               )}
+            </div>
+         </Paper>
       </Container>
    );
 };

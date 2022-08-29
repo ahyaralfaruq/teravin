@@ -63,6 +63,7 @@ const DataPengalaman = ({ update, index, value, control, remove }) => {
             <Button
                variant="contained"
                color="error"
+               size="small"
                onClick={() => remove(index)}
             >
                Remove
@@ -70,6 +71,7 @@ const DataPengalaman = ({ update, index, value, control, remove }) => {
             <Button
                variant="contained"
                color="primary"
+               size="small"
                onClick={handleSubmit((data) => {
                   update(index, data);
                })}
@@ -131,7 +133,7 @@ const PengalamanKerja = ({ nextPersonal, backStep }) => {
                   </div>
                </Grid>
             </Grid>
-            <div style={{ textAlign: "rigth" }}>
+            <div style={{ textAlign: "right" }}>
                <Button variant="outlined" onClick={backStep} size="small">
                   Back
                </Button>

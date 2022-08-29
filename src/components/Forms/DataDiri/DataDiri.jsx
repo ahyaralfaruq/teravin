@@ -1,13 +1,19 @@
 import React from "react";
 import { Typography, Grid, Button, TextField } from "@mui/material";
-import { useForm, FormProvider } from "react-hook-form";
-
-import CustomInput from "../CustomInput";
+import { useForm } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
 
 import "./style.css";
 
 const DataDiri = ({ nextPersonal }) => {
    const { handleSubmit, register } = useForm();
+
+   const navigate = useNavigate();
+
+   const backToHome = () => {
+      // 👇️ replace set to true
+      navigate("/", { replace: true });
+   };
 
    return (
       <div className="form-wrapper">
@@ -127,38 +133,11 @@ const DataDiri = ({ nextPersonal }) => {
                      size="small"
                   />
                </Grid>
-               {/* <CustomInput type="text" name="nama" label="Nama" required />
-               <CustomInput type="email" name="email" label="Email" required />
-               <CustomInput
-                  type="text"
-                  name="placeOfBirth"
-                  label="Tempat lahir"
-                  required
-               />
-               <CustomInput
-                  type="text"
-                  name="dateOfBirth"
-                  label="Tanggal lahir"
-                  required
-               />
-               <CustomInput type="number" name="norek" label="Norek" required />
-               <CustomInput
-                  type="tel"
-                  name="nohp"
-                  label="Nomor Telepon"
-                  required
-               />
-               <CustomInput type="text" name="gender" label="Gender" required />
-               <CustomInput type="text" name="agama" label="Agama" required />
-               <CustomInput type="text" name="alamat" label="Alamat" required />
-               <CustomInput
-                  type="text"
-                  name="race"
-                  label="Kewarganegaraan"
-                  required
-               /> */}
             </Grid>
             <div style={{ textAlign: "center" }}>
+               <Button variant="outlined" onClick={backToHome}>
+                  Back to Home
+               </Button>
                <Button type="submit" variant="outlined">
                   Next
                </Button>

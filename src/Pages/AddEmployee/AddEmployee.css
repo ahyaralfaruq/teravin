@@ -1,0 +1,7 @@
+.paper-wrapper {
+   padding: 40px;
+}
+.paper-wrapper > .MuiTypography-h5,
+.paper-wrapper > .MuiStepper-root {
+   margin-bottom: 40px;
+}

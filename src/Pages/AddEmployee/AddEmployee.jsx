@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import {
    Container,
    Paper,
@@ -63,11 +62,11 @@ const AddEmployee = ({ addPesertaBaru }) => {
       return activeStep === 0 ? (
          <DataDiri nextPersonal={nextPersonal} />
       ) : activeStep === 1 ? (
-         <RiwayatPendidikan />
+         <RiwayatPendidikan nextPersonal={nextPersonal} backStep={backStep} />
       ) : activeStep === 2 ? (
-         <PengalamanKerja />
+         <PengalamanKerja nextPersonal={nextPersonal} backStep={backStep} />
       ) : (
-         <Keahlian />
+         <Keahlian nextPersonal={nextPersonal} backStep={backStep} />
       );
    };
 
@@ -93,8 +92,14 @@ const AddEmployee = ({ addPesertaBaru }) => {
             laborum delectus dolore id voluptatem libero iste rem ducimus!
             Laboriosam, unde ut?
          </Typography>
-         <Button type="button" onClick={onFinally} variant="outlined">
-            Back to home
+         <Button
+            type="button"
+            onClick={onFinally}
+            variant="contained"
+            color="primary"
+            size="small"
+         >
+            Selesai dan Kembali
          </Button>
       </>
    );

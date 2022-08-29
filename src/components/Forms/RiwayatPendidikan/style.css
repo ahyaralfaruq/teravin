@@ -4,3 +4,31 @@
 .form-wrapper > .MuiTypography-h6 {
    margin-bottom: 40px;
 }
+.inputs-wrapper > .MuiFormControl-fullWidth {
+   margin-bottom: 24px;
+}
+.inputs-wrapper > .button-wrapper {
+   display: flex;
+   justify-content: space-around;
+   align-items: center;
+}
+.add-button {
+   display: flex;
+   justify-content: center;
+   width: 100%;
+   height: 100%;
+   align-items: stretch;
+   cursor: pointer;
+}
+.add-button-content {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   height: 100%;
+   width: 100%;
+}
+.add-button > .add-button-content > .MuiSvgIcon-root {
+   width: 4em;
+   height: 4em;
+}

@@ -1,11 +1,11 @@
 import React from "react";
 import { Typography, Grid, Button, TextField } from "@mui/material";
 import { useForm, useFieldArray } from "react-hook-form";
-import { Delete, Add } from "@mui/icons-material";
+import { Add } from "@mui/icons-material";
 
 import "./style.css";
 
-const namaFieldArray = "pengalamanKerja";
+const namaFieldArray = "riwayatPendidikan";
 
 const DataPendidikan = ({ update, index, value, control, remove }) => {
    const { register, handleSubmit } = useForm({
@@ -13,59 +13,60 @@ const DataPendidikan = ({ update, index, value, control, remove }) => {
    });
 
    return (
-      <>
-         <Grid item xs={12} sm={6}>
-            <TextField
-               {...register(`namaSekolah`, { required: true })}
-               fullWidth
-               variant="outlined"
-               type="text"
-               label="Nama sekolah"
-               required
-               size="small"
-            />
-            <TextField
-               {...register(`jurusan`, { required: true })}
-               fullWidth
-               variant="outlined"
-               type="text"
-               label="Jurusan"
-               required
-               size="small"
-            />
-            <TextField
-               {...register(`dari`, { required: true })}
-               fullWidth
-               variant="outlined"
-               type="text"
-               label="Dari"
-               required
-               size="small"
-            />
-            <TextField
-               {...register(`sampai`, { required: true })}
-               fullWidth
-               variant="outlined"
-               type="text"
-               label="Sampai"
-               required
-               size="small"
-            />
-            <TextField
-               {...register(`keterangan`)}
-               fullWidth
-               variant="outlined"
-               type="text"
-               label="Keterangan"
-               required
-               size="small"
-            />
+      <Grid item xs={12} sm={6} className="inputs-wrapper">
+         <TextField
+            {...register(`namaSekolah`, { required: true })}
+            fullWidth
+            variant="outlined"
+            type="text"
+            label="Nama sekolah"
+            required
+            size="small"
+         />
+         <TextField
+            {...register(`jurusan`, { required: true })}
+            fullWidth
+            variant="outlined"
+            type="text"
+            label="Jurusan"
+            required
+            size="small"
+         />
+         <TextField
+            {...register(`dari`, { required: true })}
+            fullWidth
+            variant="outlined"
+            type="text"
+            label="Dari"
+            required
+            size="small"
+         />
+         <TextField
+            {...register(`sampai`, { required: true })}
+            fullWidth
+            variant="outlined"
+            type="text"
+            label="Sampai"
+            required
+            size="small"
+         />
+         <TextField
+            {...register(`keterangan`)}
+            fullWidth
+            variant="outlined"
+            type="text"
+            label="Keterangan"
+            required
+            size="small"
+         />
+         <div className="button-wrapper">
             <Button
                variant="contained"
                color="error"
-               endIcon={<Delete />}
                onClick={() => remove(index)}
-            />
+            >
+               Remove
+            </Button>
             <Button
                variant="contained"
                color="primary"
@@ -75,12 +76,12 @@ const DataPendidikan = ({ update, index, value, control, remove }) => {
             >
                oke
             </Button>
-         </Grid>
-      </>
+         </div>
+      </Grid>
    );
 };
 
-const RiwayatPendidikan = ({ next }) => {
+const RiwayatPendidikan = ({ nextPersonal, backStep }) => {
    const { handleSubmit, control } = useForm();
    const { fields, append, update, remove } = useFieldArray({
       control,
@@ -96,7 +97,7 @@ const RiwayatPendidikan = ({ next }) => {
             Riwayat Pendidikan
          </Typography>
 
-         <form onSubmit={handleSubmit((data) => console.log(data))}>
+         <form onSubmit={handleSubmit((data) => nextPersonal({ ...data }))}>
             <Grid container spacing={3}>
                {fields.map((field, index) => (
                   <DataPendidikan
@@ -110,7 +111,7 @@ const RiwayatPendidikan = ({ next }) => {
 
                <Grid item xs={12} sm={6}>
                   <div
-                     style={{ width: "100%", height: "100%" }}
+                     className="add-button"
                      onClick={() => {
                         append({
                            namaSekolah: "",
@@ -121,21 +122,20 @@ const RiwayatPendidikan = ({ next }) => {
                         });
                      }}
                   >
-                     <div
-                        style={{
-                           display: "flex",
-                           flexDirection: "column",
-                           alignItems: "center",
-                           justifyContent: "center",
-                           height: "100%",
-                        }}
-                     >
+                     <div className="add-button-content">
                         <Add />
+                        <Typography variant="subtitle2">
+                           Add Riwayat Pendidikan
+                        </Typography>
                      </div>
                   </div>
                </Grid>
             </Grid>
-            <div style={{ textAlign: "center" }}>
+            <div style={{ textAlign: "right" }}>
+               <Button variant="outlined" onClick={backStep}>
+                  Back
+               </Button>
+
                <Button type="submit" variant="outlined">
                   Next
                </Button>

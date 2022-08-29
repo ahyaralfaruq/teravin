@@ -4,3 +4,6 @@
 .form-wrapper > .MuiTypography-h6 {
    margin-bottom: 40px;
 }
+.form-wrapper > form > .MuiGrid-root {
+   margin-bottom: 40px;
+}

@@ -6,49 +6,9 @@ import "./style.css";
 
 const namaFieldArray = "keahlian";
 
-const DataKeahlian = ({ update, index, value, control, remove }) => {
-   const { register, handleSubmit } = useForm({
-      defaultValues: value,
-   });
-
-   return (
-      <Grid item xs={12} sm={12} className="inputs-wrapper">
-         <TextField
-            {...register(`keahlian`, { required: true })}
-            fullWidth
-            variant="outlined"
-            type="text"
-            label="Keahlian"
-            required
-            size="small"
-         />
-         <div className="button-wrapper">
-            <Button
-               variant="contained"
-               color="error"
-               size="small"
-               onClick={() => remove(index)}
-            >
-               Remove
-            </Button>
-            <Button
-               variant="contained"
-               color="primary"
-               size="small"
-               onClick={handleSubmit((data) => {
-                  update(index, data);
-               })}
-            >
-               oke
-            </Button>
-         </div>
-      </Grid>
-   );
-};
-
 const Keahlian = ({ nextPersonal, backStep }) => {
-   const { handleSubmit, control } = useForm();
-   const { fields, append, update, remove } = useFieldArray({
+   const { handleSubmit, register, control } = useForm();
+   const { fields, append } = useFieldArray({
       control,
       name: namaFieldArray,
       defaultValues: {
@@ -65,24 +25,26 @@ const Keahlian = ({ nextPersonal, backStep }) => {
          <form onSubmit={handleSubmit((data) => nextPersonal({ ...data }))}>
             <Grid container spacing={3}>
                {fields.map((field, index) => (
-                  <DataKeahlian
-                     key={field.id}
-                     update={update}
-                     index={index}
-                     value={field}
-                     remove={remove}
-                  />
+                  <Grid item xs={12} sm={12} key={field.id}>
+                     <TextField
+                        {...register(`${namaFieldArray}.${index}.value`)}
+                        fullWidth
+                        variant="outlined"
+                        type="text"
+                        label="Keahlian"
+                        required
+                        size="small"
+                     />
+                  </Grid>
                ))}
 
                <Grid item xs={12} sm={12} align="center">
                   <Button
                      type="button"
                      variant="outlined"
-                     onClick={() => {
-                        append({
-                           keahlian: "",
-                        });
-                     }}
+                     onClick={() =>
+                        append({ value: "" }, { focusName: "test.0.value" })
+                     }
                   >
                      Add Keahlian
                   </Button>
